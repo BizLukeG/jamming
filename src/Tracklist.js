@@ -1,32 +1,24 @@
 import React from 'react';
 
-/* function TrackList(){
+import Track from "./Track";
+
+const TrackList = (props) => {
 
   return(
-    <ul> 
-      {TrackList.map((track) => <Track />)}
-    </ul>
+    <div className="TrackList" >
+      {props.tracks.map((track) => {
+        return(
+          <Track
+          track={track}
+          key={track.id}
+          
+
+          />
+        );
+      })}
+    </div>
 
   )
-} */
+}
 
-export const tracks = [
-  {
-    title: "First and Last",
-    artist: 'Pete',
-    album: 'Damn Pete',
-    id: "1"
-  },
-  {
-    title: "Lovely",
-    artist: 'Simon',
-    album: 'What da What',
-    id: "2"
-  },
-  {
-    title: "Smithy",
-    artist: 'Dugo',
-    album: 'Dugo Likes Deals',
-    id: "3"
-  }
-]
+export default TrackList;
