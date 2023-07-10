@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 
+import "./Playlist.css";
 import TrackList from "./Tracklist";
 
 const Playlist = (props) => {
@@ -11,7 +12,7 @@ const Playlist = (props) => {
   );
 
   return (
-    <div>
+    <div className="Playlist">
       <input onChange={handleNameChange} defaultValue={"New Playlist"} /* value={props.playlistName} */ />
       <TrackList 
         tracks= {props.playlistTracks}

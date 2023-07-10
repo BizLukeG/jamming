@@ -12,7 +12,26 @@ import Spotify from "./Spotify";
 
 
 const App = () => {
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([
+    {
+      name: "First and Last",
+      artist: 'Pete',
+      album: 'Damn Pete',
+      id: "1"
+    },
+    {
+      name: "Lovely",
+      artist: 'Simon',
+      album: 'What da What',
+      id: "2"
+    },
+    {
+      name: "Smithy",
+      artist: 'Dugo',
+      album: 'Dugo Likes Deals',
+      id: "3"
+    }
+  ]);
   const [playlistName, setPlaylistName] = useState("New Playlist");
   const [playlistTracks, setPlaylistTracks] = useState([
   {
@@ -64,19 +83,21 @@ const App = () => {
     <div className="App">
       
       <h1>
-        Jammming
+        Ja<span className="highlight">mmm</span>ing
       </h1>
       
       
       <div className="App">
         <SearchBar onSearch={search} />
-        <SearchResults searchResults={searchResults} onAdd={addTrack} />
-        <Playlist
-          playlistName={playlistName}
-          playlistTracks={playlistTracks}
-          onNameChange={updatePlaylistName}
-          onRemove={removeTrack}
-        />
+        <div className="App-playlist">
+          <SearchResults searchResults={searchResults} onAdd={addTrack} />
+          <Playlist
+            playlistName={playlistName}
+            playlistTracks={playlistTracks}
+            onNameChange={updatePlaylistName}
+            onRemove={removeTrack}
+          />
+        </div>
       </div>
 
         
