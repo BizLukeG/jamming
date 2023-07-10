@@ -8,6 +8,7 @@ import {tracks} from './Tracklist'; */
 import Playlist from "./Playlist";
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
+import Spotify from "./Spotify";
 
 
 const App = () => {
@@ -32,6 +33,10 @@ const App = () => {
     album: 'Dugo Likes Deals',
     id: "3"
   }]);
+
+  const search = useCallback((term) => {
+    Spotify.search(term).then(setSearchResults);
+  }, []);
 
   const addTrack = useCallback(
     (track) => {
@@ -64,7 +69,7 @@ const App = () => {
       
       
       <div className="App">
-        <SearchBar />
+        <SearchBar onSearch={search} />
         <SearchResults searchResults={searchResults} onAdd={addTrack} />
         <Playlist
           playlistName={playlistName}
