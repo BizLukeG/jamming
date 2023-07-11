@@ -13,7 +13,7 @@ import Spotify from "./Spotify";
 
 const App = () => {
   const [searchResults, setSearchResults] = useState([
-    {
+    /* {
       name: "First and Last",
       artist: 'Pete',
       album: 'Damn Pete',
@@ -30,11 +30,11 @@ const App = () => {
       artist: 'Dugo',
       album: 'Dugo Likes Deals',
       id: "3"
-    }
+    } */
   ]);
   const [playlistName, setPlaylistName] = useState("New Playlist");
   const [playlistTracks, setPlaylistTracks] = useState([
-  {
+  /* {
     name: "First and Last",
     artist: 'Pete',
     album: 'Damn Pete',
@@ -51,7 +51,7 @@ const App = () => {
     artist: 'Dugo',
     album: 'Dugo Likes Deals',
     id: "3"
-  }]);
+  } */]);
 
   const search = useCallback((term) => {
     Spotify.search(term).then(setSearchResults);
@@ -77,16 +77,21 @@ const App = () => {
 
   const updatePlaylistName = useCallback((name) => {
     setPlaylistName(name);
-  })
+  },[]);
+
+  const savePlaylist = useCallback(()=> {
+    const trackUris = playlistTracks.map((track) => track.uri);
+    Spotify.savePlaylist(playlistName, trackUris).then(()=>{
+      setPlaylistName("New Playlist");
+      setPlaylistTracks([]);
+    });
+  }, [playlistName, playlistTracks]);
 
   return (
-    <div className="App">
-      
+    <div>
       <h1>
         Ja<span className="highlight">mmm</span>ing
       </h1>
-      
-      
       <div className="App">
         <SearchBar onSearch={search} />
         <div className="App-playlist">
@@ -96,6 +101,7 @@ const App = () => {
             playlistTracks={playlistTracks}
             onNameChange={updatePlaylistName}
             onRemove={removeTrack}
+            onSave={savePlaylist}
           />
         </div>
       </div>
